@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+
+        <div class="col-md-6 m-auto testPadding">
+            <div class="card card-body mainCard">
+                    <h1><img class="img-fluid center testTrans" src="/images/forteShortLogo.png" alt="LogoPic"></h1>
+                <h4 class="text-center mb-3">Teacher Dashboard</h4>
+                <p class="text-center lead mb-3">Welcome <%= name %>!</p>
+                <h4>Upcoming Lessons</h4>
+                <ul class="list-group pre-scrollable">
+                    <%
+                        if (upcoming) {
+                            var rows = '';
+                            upcoming.forEach((item) => {
+                                let studentName = '';
+
+                                teachers.forEach((data) => {
+                                    if (data.id == item.studentid) {
+                                        studentName = data.name;
+                                    }
+                                });
+
+                                let date = item.date.toString();
+                                let time = item.time.toString();
+                                console.log('Time: ');
+                                console.log(time);
+
+
+                                rows += '<li class="list-group-item card card-body"><div class="row"><div class="col-md-9">Date: ' + date.slice(0,16);
+                                rows += '</br>Time: ' + time.slice(0,5);
+                                rows += '</br>Student: ' + studentName;
+                                rows += '</div><div><a href="/teacher-lesson_info/' + '?id=' + item.meetingid + '&time=' + time.slice(0,5) + '&student=' + studentName + '&date=' + date.slice(0,16) + '&name=' + name +'" class="btn btn-outline-info">More Info</a>';
+                                rows += '</div></div></li>';
+                            }); %>
+                            <%- rows %>
+                    <% } %>
+                </ul>
+            </br>
+                <a href="/teacher_availability" class="btn btn-secondary btn-block">Set Availability</a>
+                <a href="/teacherPV" class="btn btn-secondary btn-block">See Your Profile</a>
+                <a href="/logout" class="btn btn-primary btn-block">Logout</a>
+
+            </div>
+        </div>
+    
+<% include ../partials/footer %>

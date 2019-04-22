@@ -1,0 +1,44 @@
+<% include ../partials/header %>
+
+
+    <div class="col-md-6 m-auto testPadding">
+      <div class="card card-body mainCard">
+          <h1><img class="img-fluid center testTrans" src="/images/forteShortLogo.png" alt="LogoPic"></h1>
+        <h4 class="text-center mb-3">Login</h4>
+        <% include ../partials/messages %>
+        <form action="/login" method="POST">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="Enter Email"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Enter Password"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <br>
+        <p>
+          No Account? <a href="/registration">Register</a>
+        </p>
+        <p>Forgot your password?
+          <a href="/forgot">Reset Password</a>
+        </p>
+      </div>
+    </div>
+
+  <% include ../partials/footer %>
